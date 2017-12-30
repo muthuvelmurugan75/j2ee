@@ -37,10 +37,8 @@ public class ProjectController extends HttpServlet {
 			
 			
 		if(loginStatus == true){
-			//pw.println("<h2 style ='color:green'>Authentication success</h2> for user : "+name);
 			request.setAttribute("name", name);
 			request.setAttribute("password", password);
-			//request.setAttribute("gmail", gmail);
 
 			//Set the value in session
 			HttpSession  hs = request.getSession();

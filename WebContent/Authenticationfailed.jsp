@@ -8,7 +8,7 @@
 </head>
 <style>
      body{background-color:blue;}
-      .home{width:100%; height:600px; border:1px solid blue; }
+      .home{width:100%; height:600px; border:1px solid red; }
 	  
       
 		
