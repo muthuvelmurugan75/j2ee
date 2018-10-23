@@ -1,0 +1,150 @@
+package bean;
+
+
+import java.util.Arrays;
+import java.util.Random;
+import dbconn.Dbconnection;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class Clg_inbox_random {
+	static Connection conn=null;
+
+
+		
+		
+
+
+	
+	public static void getRandom(int[] array) {
+		int t=0;
+		for(int i=array.length-1;i>0;i--){
+		    int rnd = new Random().nextInt(array.length);
+	 t=array[i];
+	array[i]=array[rnd];
+	array[rnd]=t;
+	
+	answer(t);
+	break;
+
+		}
+	   
+	}
+	
+	
+	
+public static int answer (int n){
+	
+	return n;
+	
+}
+
+	public static int countRows() throws SQLException {
+		conn=Dbconnection.create();
+	
+	    // select the number of rows in the table
+	    Statement stmt = null;
+	    ResultSet rs = null;
+	    int rowCount = -1;
+	    try {
+	      stmt = conn.createStatement();
+	      rs = stmt.executeQuery("SELECT COUNT(publickey) FROM dm09.file_send_to_clg ");
+	      // get the number of rows from the result set
+	      rs.next();
+	      rowCount = rs.getInt(1);
+	    } finally {
+	      rs.close();
+	      stmt.close();
+	    }
+	    return rowCount;
+	  }
+	
+	
+	
+	
+	public static int display(){
+		int t=0;
+		try {
+			 t=Clg_inbox_random.countRows();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+int array[]=new int [t];
+
+		 PreparedStatement ps2=null;
+		 Connection con=null;
+		 Connection con1=null;
+
+
+		String key="";
+
+
+		   try{
+		 
+		   
+
+	   
+	   
+	   con=Dbconnection.create();
+		 ps2=con.prepareStatement("SELECT * FROM `dm09`.`file_send_to_clg`");
+	   
+		ResultSet rs1=ps2.executeQuery();
+		while(rs1.next()){
+			
+			key=rs1.getString(3);
+			int number=Integer.parseInt(key);
+			if(key!=null){
+System.out.println("keyyyyyyyy"+key);
+for(int i=0;i<array.length;i++){
+	array[i]=number;
+}
+
+getRandom(array);		
+			}
+			else{
+			}
+			
+
+	}
+		   }
+		   catch(Exception e){
+e.printStackTrace();		   }
+		return t;
+		   
+		
+		
+		
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+
